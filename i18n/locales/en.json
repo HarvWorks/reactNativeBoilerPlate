@@ -1,0 +1,19 @@
+{
+  "Checkout": {
+    "checkout": "Checkout",
+    "subtotal": "Subtotal",
+    "pickupSavings": "Pickup Savings",
+    "pickupSavingsDesc": "Picking up the item in store helps cut costs, and we pass the savings to you.",
+    "taxes": "Est. taxes & fees",
+    "taxBased": "Based on",
+    "total": "Est. Total",
+    "seeDetails": "See Item Details",
+    "hideDetails": "Hide Item Details",
+    "showCoupon": "Apply promo code",
+    "hideCoupon": "Hide promo code",
+    "coupon": "Promo code",
+    "apply": "Apply",
+    "couponError": "Bad Coupon Code, please try: \"promo10\", \"promo20\", or \"promobestday\"",
+    "quantity": "Qty"
+  }
+}
