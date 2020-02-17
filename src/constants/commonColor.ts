@@ -14,7 +14,7 @@ const colors = {
   greylight: "#dddcdc",
 
   // Reds
-  red: "#ff0000"
-}
+  red: "#ff0000",
+};
 
-export default colors
+export default colors;

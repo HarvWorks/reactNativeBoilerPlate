@@ -9,5 +9,5 @@ const getUserReducerSelector = (state: IState) => state[reducerName];
 
 export const getUserInfo = createSelector(
   [getUserReducerSelector],
-  (UserReducer: IUserReducer) => UserReducer
+  (UserReducer: IUserReducer) => UserReducer,
 );

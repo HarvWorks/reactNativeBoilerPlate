@@ -4,17 +4,17 @@ import commonColor from "../../../constants/commonColor";
 
 const styles = StyleSheet.create({
   container: {
-    zIndex: 1
+    zIndex: 1,
   },
   red: {
     color: commonColor.red,
   },
   spacedText: {
-    paddingVertical: 12
+    paddingVertical: 12,
   },
   underlined: {
-    textDecorationLine: "underline"
-  }
+    textDecorationLine: "underline",
+  },
 });
 
 export default styles;

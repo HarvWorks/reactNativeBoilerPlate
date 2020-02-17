@@ -1,11 +1,11 @@
 export {
   default as CheckoutReducer,
   ICheckoutReducer,
-  initialState as checkoutInitialState
+  initialState as checkoutInitialState,
 } from "./CheckoutReducer";
 
 export {
   default as UserReducer,
   IUserReducer,
-  initialState as userInitialState
+  initialState as userInitialState,
 } from "./UserReducer";

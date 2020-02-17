@@ -1,5 +1,4 @@
-import React, { SFC, PureComponent } from "react";
-import { Text } from "react-native";
+import React, { PureComponent } from "react";
 
 import styles from "./styles";
 import i18n from "../../../../i18n";
@@ -14,56 +13,62 @@ import CheckoutItem from "../common/CheckoutItem";
 interface IProps {
   dollarSymbol: String;
   totalPrice: String;
-  listOfItems: IItem[]
+  listOfItems: IItem[];
 }
 
 class CheckoutThirdCell extends PureComponent<IProps> {
-
   getRenderItems = () => {
-    const { listOfItems, dollarSymbol } = this.props
-    const { grey } = styles
+    const { listOfItems, dollarSymbol } = this.props;
+    const { grey } = styles;
     let renderItems;
 
     if (listOfItems && listOfItems.length > 0) {
       renderItems = listOfItems.map((item, index) => {
-        return ( 
-          <CheckoutItem 
+        return (
+          <CheckoutItem
             key={index}
             first={index === 0}
             dollarSymbol={dollarSymbol}
             item={item}
           />
-        )
-      })
-    }
-    else {
-      renderItems = <StylizedText style={grey}>{i18n.t("Checkout.noItems")}</StylizedText>
+        );
+      });
+    } else {
+      renderItems = (
+        <StylizedText style={grey}>{i18n.t("Checkout.noItems")}</StylizedText>
+      );
     }
 
-    return renderItems
-  }
+    return renderItems;
+  };
 
   render() {
-    const { dollarSymbol = "", totalPrice = "" } = this.props
-    const { checkoutPrice, checkoutPriceDesc } = styles
+    const { dollarSymbol = "", totalPrice = "" } = this.props;
+    const { checkoutPrice, checkoutPriceDesc } = styles;
 
     const renderItems = this.getRenderItems();
-    
     return (
       <CheckoutCells>
-        <TwoColumnRow 
-          left= {<BoldText style={checkoutPriceDesc}>{i18n.t("Checkout.total")}</BoldText>}
-          right={<BoldText style={checkoutPrice}>{`${dollarSymbol} ${totalPrice}`}</BoldText>}
+        <TwoColumnRow
+          left={
+            <BoldText style={checkoutPriceDesc}>
+              {i18n.t("Checkout.total")}
+            </BoldText>
+          }
+          right={
+            <BoldText style={checkoutPrice}>
+              {`${dollarSymbol} ${totalPrice}`}
+            </BoldText>
+          }
         />
-        <Expander 
-          openText={i18n.t("Checkout.seeDetails")} 
-          closeText={i18n.t("Checkout.hideDetails")}
-        >
+        <Expander
+          openText={i18n.t("Checkout.seeDetails")}
+          closeText={i18n.t("Checkout.hideDetails")}>
           {renderItems}
         </Expander>
       </CheckoutCells>
     );
   }
-};
+}
 
 export default CheckoutThirdCell;

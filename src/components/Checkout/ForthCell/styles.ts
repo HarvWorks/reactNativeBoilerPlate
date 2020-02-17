@@ -4,15 +4,15 @@ import commonColor from "../../../constants/commonColor";
 
 const styles = StyleSheet.create({
   colorGrey: {
-    color: commonColor.darkGrey
+    color: commonColor.darkGrey,
   },
   row: {
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 10
+    paddingVertical: 10,
   },
   colorRed: {
-    color: commonColor.red
+    color: commonColor.red,
   },
   inputBox: {
     padding: 2,
@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     flex: 1,
     marginRight: 10,
-    borderRadius: 4
-  }
+    borderRadius: 4,
+  },
 });
 
 export default styles;

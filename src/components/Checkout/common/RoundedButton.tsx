@@ -1,8 +1,6 @@
 import React, { SFC } from "react";
 
 import styles from "./styles";
-import i18n from "../../../../i18n";
-import CheckoutCells from "../common/CheckoutCells";
 import BoldText from "../../common/BoldText";
 import { TouchableOpacity, View } from "react-native";
 
@@ -12,8 +10,8 @@ interface IProps {
 }
 
 const RoundedButton: SFC<IProps> = props => {
-  const { onPress, text } = props
-  const { roundedButton, buttonText } = styles
+  const { onPress, text } = props;
+  const { roundedButton, buttonText } = styles;
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={roundedButton}>

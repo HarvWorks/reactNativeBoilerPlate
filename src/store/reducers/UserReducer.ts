@@ -2,10 +2,7 @@ import { userActionTypes } from "../actions";
 
 import { IAction } from "../../../types/common";
 
-
-const { 
-  ITITALIZE_USER,
-} = userActionTypes;
+const { ITITALIZE_USER } = userActionTypes;
 
 export interface IUserReducer {
   dollarSymbol: String;
@@ -13,42 +10,41 @@ export interface IUserReducer {
 }
 
 export const initialState = {
-  dollarSymbol: "",  
+  dollarSymbol: "",
   zip: "",
 } as IUserReducer;
 
-
 const initalizeUser = (state: IUserReducer, action: IAction) => {
   const dollarSymbols = ["$", "£", "€"];
-  const index = Math.floor(Math.random() * dollarSymbols.length)
+  const index = Math.floor(Math.random() * dollarSymbols.length);
   const newDollarSymbol = dollarSymbols[index];
   let newZip = "9";
 
   for (let i = 0; i < 4; i++) {
-    newZip += Math.floor(Math.random() * 10)
+    newZip += Math.floor(Math.random() * 10);
   }
 
   const nextState: IUserReducer = {
     ...state,
     dollarSymbol: newDollarSymbol,
-    zip: newZip
-  }
+    zip: newZip,
+  };
 
-  return nextState
-}
+  return nextState;
+};
 
 const getReducer = (
-  type: string
+  type: string,
 ): ((state: IUserReducer, action: IAction) => any) => {
   const reducers = {
-    [ITITALIZE_USER]: initalizeUser
+    [ITITALIZE_USER]: initalizeUser,
   };
   return reducers[type];
 };
 
 const UserReducer = (
   state: IUserReducer = initialState,
-  action: { type: string; payload: any }
+  action: { type: string; payload: any },
 ) => {
   const reducer = getReducer(action.type);
 

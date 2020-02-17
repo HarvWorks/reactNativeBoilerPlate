@@ -19,53 +19,67 @@ interface IProps {
 }
 
 const CheckoutSecondCell: SFC<IProps> = props => {
-  const { 
-    dollarSymbol = "",  
-    subtotalPrice = "", 
-    pickupSavings = "", 
-    taxes = "",  
-    zipCode = "Zip"
-  } = props
-  const { red, spacedText, underlined, container } = styles
+  const {
+    dollarSymbol = "",
+    subtotalPrice = "",
+    pickupSavings = "",
+    taxes = "",
+    zipCode = "Zip",
+  } = props;
+  const { red, spacedText, underlined, container } = styles;
 
   let savingsText;
 
-  if (pickupSavings && pickupSavings.substring(0,1) !== "0") {
-    savingsText = <BoldText style={red}>{`-${dollarSymbol} ${pickupSavings}`}</BoldText>;
+  if (pickupSavings && pickupSavings.substring(0, 1) !== "0") {
+    savingsText = (
+      <BoldText style={red}>{`-${dollarSymbol} ${pickupSavings}`}</BoldText>
+    );
   } else {
     savingsText = <BoldText>{`${dollarSymbol} ${pickupSavings}`}</BoldText>;
-  } 
+  }
 
   const taxesText = (
     <View>
       <StylizedText>{i18n.t("Checkout.taxes")}</StylizedText>
-      <StylizedText>{`(${i18n.t("Checkout.taxBased")} ${zipCode})`}</StylizedText>
+      <StylizedText>{`(${i18n.t(
+        "Checkout.taxBased",
+      )} ${zipCode})`}</StylizedText>
     </View>
-  )
+  );
 
   const pickupSavingsText = (
     <Tooltip
-      toolTipLink={<StylizedText style={underlined}>{i18n.t("Checkout.pickupSavings")}</StylizedText>}
+      toolTipLink={
+        <StylizedText style={underlined}>
+          {i18n.t("Checkout.pickupSavings")}
+        </StylizedText>
+      }
       toolTipText={i18n.t("Checkout.pickupSavingsDesc")}
     />
-  )
+  );
 
   return (
     <CheckoutCells style={container}>
-      <TwoColumnRow style={spacedText}
-        left= {<StylizedText>{i18n.t("Checkout.subtotal")}</StylizedText>}
+      <TwoColumnRow
+        style={spacedText}
+        left={<StylizedText>{i18n.t("Checkout.subtotal")}</StylizedText>}
         right={<BoldText>{`${dollarSymbol} ${subtotalPrice}`}</BoldText>}
       />
-      <TwoColumnRow style={spacedText}
-        left= {pickupSavingsText}
+      <TwoColumnRow
+        style={spacedText}
+        left={pickupSavingsText}
         right={savingsText}
       />
-      <TwoColumnRow style={spacedText}
-        left= {taxesText}
-        right={<BoldText>{dollarSymbol} {taxes}</BoldText>}
+      <TwoColumnRow
+        style={spacedText}
+        left={taxesText}
+        right={
+          <BoldText>
+            {dollarSymbol} {taxes}
+          </BoldText>
+        }
       />
     </CheckoutCells>
-    
   );
 };
 

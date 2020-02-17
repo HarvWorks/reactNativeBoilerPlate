@@ -9,10 +9,10 @@ const getCheckoutReducerSelector = (state: IState) => state[reducerName];
 
 export const getCheckoutInfo = createSelector(
   [getCheckoutReducerSelector],
-  (CheckoutReducer: ICheckoutReducer) => CheckoutReducer
+  (CheckoutReducer: ICheckoutReducer) => CheckoutReducer,
 );
 
 export const getbadCouponCodeInfo = createSelector(
   [getCheckoutReducerSelector],
-  (CheckoutReducer: ICheckoutReducer) => CheckoutReducer.badCouponCode
+  (CheckoutReducer: ICheckoutReducer) => CheckoutReducer.badCouponCode,
 );

@@ -7,11 +7,11 @@ const styles = StyleSheet.create({
     fontSize: 23,
   },
   checkoutPriceDesc: {
-    fontSize: 21
+    fontSize: 21,
   },
   grey: {
-    color: commonColor.grey
-  }
+    color: commonColor.grey,
+  },
 });
 
 export default styles;

@@ -12,50 +12,50 @@ const {
 const applyCouponCodeAction = (couponCode: string) => ({
   type: APPLY_COUPON_CODE,
   payload: {
-    couponCode
-  }
-})
+    couponCode,
+  },
+});
 
 const togglePickupAction = () => ({
-  type: TOGGLE_PICKUP
-})
+  type: TOGGLE_PICKUP,
+});
 
 const addItemAction = (item: IItem) => ({
   type: ADD_ITEM,
   payload: {
-    item
-  }
-})
+    item,
+  },
+});
 
 const removeItemAction = (index: number) => ({
   type: REMOVE_ITEM,
   payload: {
-    index
-  }
-})
+    index,
+  },
+});
 
 const initalizeItemsAction = () => ({
-  type: ITITALIZE_ITEMS
-})
+  type: ITITALIZE_ITEMS,
+});
 
 export const applyCouponCode = (couponCode: string) => (dispatch: any) => {
   dispatch(applyCouponCodeAction(couponCode));
-}
+};
 
 export const togglePickup = () => (dispatch: any) => {
   dispatch(togglePickupAction());
-}
+};
 
 export const addItem = (item: IItem) => (dispatch: any) => {
   dispatch(addItemAction(item));
-}
+};
 
 export const removeItem = (index: number) => (dispatch: any) => {
   dispatch(removeItemAction(index));
-}
+};
 
 export const initalizeItems = () => (dispatch: any) => {
   console.log("Is initalizeItems workings?");
-  
+
   dispatch(initalizeItemsAction());
-}
+};

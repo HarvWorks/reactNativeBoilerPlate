@@ -3,7 +3,6 @@ import { View, TouchableOpacity } from "react-native";
 
 import styles from "./styles";
 import StylizedText from "../../common/StyledText";
-import i18n from "../../../../i18n";
 
 interface IProps {
   openText: String;
@@ -18,46 +17,43 @@ class Expander extends PureComponent<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
-      expanded: false
-    }
+      expanded: false,
+    };
   }
 
   toggleExpanderHandler = () => {
-    const { expanded } = this.state
-    this.setState({ expanded: !expanded })
-  }
+    const { expanded } = this.state;
+    this.setState({ expanded: !expanded });
+  };
 
   render() {
-    const { children, openText, closeText } = this.props
-    const { expanded } = this.state
+    const { children, openText, closeText } = this.props;
+    const { expanded } = this.state;
     const { expanderStyles, underlined, expanderInnerContainer } = styles;
 
     let content = (
       <TouchableOpacity onPress={this.toggleExpanderHandler}>
-        <StylizedText><StylizedText style={underlined}>{openText}</StylizedText> +</StylizedText>
+        <StylizedText>
+          <StylizedText style={underlined}>{openText}</StylizedText> +
+        </StylizedText>
       </TouchableOpacity>
-    )
+    );
 
     if (expanded) {
       content = (
         <>
           <TouchableOpacity onPress={this.toggleExpanderHandler}>
-            <StylizedText><StylizedText style={underlined}>{closeText}</StylizedText> -</StylizedText>
+            <StylizedText>
+              <StylizedText style={underlined}>{closeText}</StylizedText> -
+            </StylizedText>
           </TouchableOpacity>
-          <View style={expanderInnerContainer}>
-            {children}
-          </View>
+          <View style={expanderInnerContainer}>{children}</View>
         </>
-      )
+      );
     }
 
-    return (
-      <View style={expanderStyles}>
-        {content}
-      </View>
-      
-    );
+    return <View style={expanderStyles}>{content}</View>;
   }
-};
+}
 
 export default Expander;

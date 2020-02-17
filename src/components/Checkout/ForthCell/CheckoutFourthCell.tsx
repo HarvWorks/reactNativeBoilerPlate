@@ -9,15 +9,14 @@ class CheckoutFourthCell extends PureComponent {
   render() {
     return (
       <CheckoutCells isBottom>
-        <Expander 
-          openText={i18n.t("Checkout.showCoupon")} 
-          closeText={i18n.t("Checkout.hideCoupon")}
-        >
-          <PromoCode/>
+        <Expander
+          openText={i18n.t("Checkout.showCoupon")}
+          closeText={i18n.t("Checkout.hideCoupon")}>
+          <PromoCode />
         </Expander>
       </CheckoutCells>
     );
   }
-};
+}
 
 export default CheckoutFourthCell;

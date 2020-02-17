@@ -1,5 +1,5 @@
-import React, { PureComponent } from "react";
-import { View, Animated, TouchableOpacity, Dimensions, Modal } from "react-native";
+import React, { createRef, PureComponent } from "react";
+import { View, TouchableOpacity, Modal } from "react-native";
 
 import styles from "./styles";
 import StylizedText from "../../common/StyledText";
@@ -22,69 +22,76 @@ class Tooltip extends PureComponent<IProps, IState> {
       tooltipExtended: false,
       x: 0,
       y: 0,
-    }
+    };
   }
+
+  private btnRef = createRef<TouchableOpacity>();
 
   toggleTooltipHandler = () => {
     const { tooltipExtended } = this.state;
-    if (!tooltipExtended) {
-      this.refs.container.measureInWindow((x, y, containerWidth) => {
-        this.setState({ x: x + containerWidth / 2, y: y, tooltipExtended: !tooltipExtended })
-      })
-    } 
-    else {
-      this.setState({tooltipExtended: !tooltipExtended})
+    if (!tooltipExtended && this.btnRef.current) {
+      this.btnRef.current.measureInWindow((x, y, containerWidth) => {
+        this.setState({
+          x: x + containerWidth / 2,
+          y: y,
+          tooltipExtended: !tooltipExtended,
+        });
+      });
+    } else {
+      this.setState({ tooltipExtended: !tooltipExtended });
     }
-  }
+  };
 
   getRenderTooltip = () => {
-    const { toolTipText } = this.props
-    const { tooltipExtended, x, y } = this.state
+    const { toolTipText } = this.props;
+    const { tooltipExtended, x, y } = this.state;
     const { tooltipStyle, upTriangle, background } = styles;
     let renderTooltip = null;
 
     if (tooltipExtended) {
       renderTooltip = (
-        <TouchableOpacity onPress={this.toggleTooltipHandler} style={background}>
-          <View style={{ 
-            top: y + 5, 
-            left: x - 200/2, 
-            position: "absolute", 
-            alignContent: "center",
-            alignItems: "center"
-          }}>
-            <View style={upTriangle}/>
+        <TouchableOpacity
+          onPress={this.toggleTooltipHandler}
+          style={background}>
+          <View
+            style={{
+              top: y + 5,
+              left: x - 200 / 2,
+              position: "absolute",
+              alignContent: "center",
+              alignItems: "center",
+            }}>
+            <View style={upTriangle} />
             <View style={tooltipStyle}>
               <StylizedText>{toolTipText}</StylizedText>
             </View>
           </View>
         </TouchableOpacity>
-      )
+      );
     }
     return renderTooltip;
-  }
+  };
 
   render() {
-    const { toolTipLink } = this.props
+    const { toolTipLink } = this.props;
     const { tooltipExtended } = this.state;
 
     const tooltip = this.getRenderTooltip();
 
     return (
       <View>
-        <TouchableOpacity onPress={this.toggleTooltipHandler}  ref={'container'}>
+        <TouchableOpacity onPress={this.toggleTooltipHandler} ref={this.btnRef}>
           {toolTipLink}
         </TouchableOpacity>
         <Modal
           visible={tooltipExtended}
           transparent={true}
-          onRequestClose={this.toggleTooltipHandler}
-        >
+          onRequestClose={this.toggleTooltipHandler}>
           {tooltip}
         </Modal>
       </View>
     );
   }
-};
+}
 
 export default Tooltip;

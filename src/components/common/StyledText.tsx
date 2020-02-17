@@ -8,16 +8,17 @@ interface IProps {
 }
 
 const StylizedText: SFC<IProps> = props => {
-  const { children, style } = props
-  const { fontFamily } = styles
+  const { children, style } = props;
+  const { fontFamily } = styles;
   let combinedStyles = [];
 
   combinedStyles.push(fontFamily);
-  if (style) combinedStyles.push(style);
 
-  return (
-    <Text style={combinedStyles}>{children}</Text>
-  )
+  if (style) {
+    combinedStyles.push(style);
+  }
+
+  return <Text style={combinedStyles}>{children}</Text>;
 };
 
 export default StylizedText;

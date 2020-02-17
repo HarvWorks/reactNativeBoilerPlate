@@ -1,4 +1,4 @@
-import React, { SFC, PureComponent } from "react";
+import React, { PureComponent } from "react";
 import { View, TextInput } from "react-native";
 import { connect } from "react-redux";
 
@@ -10,11 +10,10 @@ import StylizedText from "../../common/StyledText";
 import RoundedButton from "../common/RoundedButton";
 
 import styles from "./styles";
-import { ICheckoutReducer } from "../../../store/reducers";
 
 interface IProps {
   badCouponCode: boolean;
-  applyCouponCode: (code: string) => void
+  applyCouponCode: (code: string) => void;
 }
 
 interface IState {
@@ -26,40 +25,46 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  applyCouponCode: (code: string) => applyCouponCode(code)(dispatch)
+  applyCouponCode: (code: string) => applyCouponCode(code)(dispatch),
 });
 
-class PromoCode extends PureComponent <IProps, IState> {
+class PromoCode extends PureComponent<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
-      promoCode: ""
-    }
+      promoCode: "",
+    };
   }
 
   onPromoChange = (text: string) => {
-    this.setState({promoCode: text})
-  }
+    this.setState({ promoCode: text });
+  };
 
   onPromoSubmit = () => {
     const { promoCode } = this.state;
-    const { applyCouponCode } = this.props
+    const { applyCouponCode } = this.props;
     applyCouponCode(promoCode);
-  }
+  };
 
-  render() {  
-    const { row, colorGrey, colorRed, inputBox, inputContainer } = styles
-    const { promoCode } = this.state
+  render() {
+    const { row, colorGrey, colorRed, inputBox, inputContainer } = styles;
+    const { promoCode } = this.state;
     const { badCouponCode } = this.props;
 
     let errorText;
 
     if (badCouponCode) {
-      errorText = <StylizedText style={colorRed}>{i18n.t("Checkout.couponError")}</StylizedText>
+      errorText = (
+        <StylizedText style={colorRed}>
+          {i18n.t("Checkout.couponError")}
+        </StylizedText>
+      );
     }
     return (
       <>
-        <StylizedText style={colorGrey}>{i18n.t("Checkout.coupon")}</StylizedText>
+        <StylizedText style={colorGrey}>
+          {i18n.t("Checkout.coupon")}
+        </StylizedText>
         <View style={row}>
           <View style={inputContainer}>
             <TextInput
@@ -68,16 +73,18 @@ class PromoCode extends PureComponent <IProps, IState> {
               value={promoCode}
             />
           </View>
-          <RoundedButton onPress={this.onPromoSubmit} text={i18n.t("Checkout.apply")}/>
+          <RoundedButton
+            onPress={this.onPromoSubmit}
+            text={i18n.t("Checkout.apply")}
+          />
         </View>
         {errorText}
       </>
-      
     );
   }
-};
+}
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(PromoCode);

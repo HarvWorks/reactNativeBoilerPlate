@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 import commonColor from "../../../constants/commonColor";
 
-const buttonHeight = 25
+const buttonHeight = 25;
 
 const styles = StyleSheet.create({
   scrollViewContainer: {
@@ -29,46 +29,46 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 2,
     flex: 1,
-    maxWidth: 250
+    maxWidth: 250,
   },
   cells: {
     paddingVertical: 15,
-    width: "100%"
+    width: "100%",
   },
   cellsDivider: {
     borderBottomColor: commonColor.grey,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   expanderStyles: {
-    paddingVertical: 10
+    paddingVertical: 10,
   },
   underlined: {
-    textDecorationLine: "underline"
+    textDecorationLine: "underline",
   },
   roundedButton: {
     borderColor: commonColor.black,
     borderRadius: buttonHeight / 2,
-    height: buttonHeight
+    height: buttonHeight,
   },
   buttonText: {
-    fontSize: 15
+    fontSize: 15,
   },
   expanderInnerContainer: {
-    paddingTop: 15
+    paddingTop: 15,
   },
   imageStyle: {
     width: 50,
-    height: 50
+    height: 50,
   },
   checkoutItemSpacing: {
-    marginTop: 15
+    marginTop: 15,
   },
   rightStyle: {
     flex: 1,
-    paddingLeft: 15
+    paddingLeft: 15,
   },
   itemPaddingTop: {
-    paddingTop: 10
+    paddingTop: 10,
   },
   tooltipStyle: {
     borderRadius: 5,
@@ -85,25 +85,25 @@ const styles = StyleSheet.create({
   upTriangle: {
     width: 0,
     height: 0,
-    backgroundColor: 'transparent',
-    borderStyle: 'solid',
+    backgroundColor: "transparent",
+    borderStyle: "solid",
     borderLeftWidth: 15,
     borderRightWidth: 15,
     borderBottomWidth: 30,
-    borderLeftColor: 'transparent',
-    borderRightColor: 'transparent',
+    borderLeftColor: "transparent",
+    borderRightColor: "transparent",
     borderBottomColor: commonColor.white,
     elevation: 1,
     shadowColor: commonColor.black,
-    shadowOffset: { width: 0, height: - 2},
+    shadowOffset: { width: 0, height: -2 },
     shadowOpacity: 0.1,
     shadowRadius: 1,
     zIndex: 2,
   },
   background: {
     flex: 1,
-    backgroundColor: "transparent"
-  }
+    backgroundColor: "transparent",
+  },
 });
 
 export default styles;
