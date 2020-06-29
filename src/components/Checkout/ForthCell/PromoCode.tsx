@@ -31,9 +31,9 @@ const PromoCode: FunctionComponent<IProps> = ({
   promoCode = "",
 }) => {
   const { row, colorGrey, colorRed, inputBox, inputContainer } = styles;
-  const [promo, setPromo] = useState(promoCode);
-  const onPromoChange = (text: string) => setPromo(text);
-  const onPromoSubmit = () => applyCouponCode(promo);
+  const [promoCodeValue, setPromoCode] = useState(promoCode);
+  const onPromoChange = (text: string) => setPromoCode(text);
+  const onPromoSubmit = () => applyCouponCode(promoCodeValue);
   let errorText = null;
 
   if (badCouponCode) {
@@ -51,7 +51,7 @@ const PromoCode: FunctionComponent<IProps> = ({
           <TextInput
             style={inputBox}
             onChangeText={onPromoChange}
-            value={promo}
+            value={promoCodeValue}
           />
         </View>
         <RoundedButton
