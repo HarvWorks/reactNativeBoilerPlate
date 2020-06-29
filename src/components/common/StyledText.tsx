@@ -1,4 +1,4 @@
-import React, { SFC } from "react";
+import React, { FunctionComponent } from "react";
 import { Text, TextStyle } from "react-native";
 
 import styles from "./styles";
@@ -7,7 +7,7 @@ interface IProps {
   style?: TextStyle;
 }
 
-const StylizedText: SFC<IProps> = props => {
+const StylizedText: FunctionComponent<IProps> = props => {
   const { children, style } = props;
   const { fontFamily } = styles;
   let combinedStyles = [];

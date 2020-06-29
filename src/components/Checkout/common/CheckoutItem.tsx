@@ -1,4 +1,4 @@
-import React, { SFC } from "react";
+import React, { FunctionComponent } from "react";
 import { View, Image } from "react-native";
 
 import styles from "./styles";
@@ -15,7 +15,7 @@ interface IProps {
   first: boolean;
 }
 
-const CheckoutItem: SFC<IProps> = props => {
+const CheckoutItem: FunctionComponent<IProps> = props => {
   const { dollarSymbol, item, first } = props;
   const { unitPrice, title, quantity, picture } = item;
   const {

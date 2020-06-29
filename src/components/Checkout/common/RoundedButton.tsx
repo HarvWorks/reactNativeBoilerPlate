@@ -1,4 +1,4 @@
-import React, { SFC } from "react";
+import React, { FunctionComponent } from "react";
 
 import styles from "./styles";
 import BoldText from "../../common/BoldText";
@@ -9,7 +9,7 @@ interface IProps {
   text: String;
 }
 
-const RoundedButton: SFC<IProps> = props => {
+const RoundedButton: FunctionComponent<IProps> = props => {
   const { onPress, text } = props;
   const { roundedButton, buttonText } = styles;
   return (

@@ -1,4 +1,4 @@
-import React, { SFC } from "react";
+import React, { FunctionComponent } from "react";
 import { View } from "react-native";
 
 import i18n from "../../../../i18n";
@@ -18,7 +18,7 @@ interface IProps {
   zipCode: String;
 }
 
-const CheckoutSecondCell: SFC<IProps> = props => {
+const CheckoutSecondCell: FunctionComponent<IProps> = props => {
   const {
     dollarSymbol = "",
     subtotalPrice = "",

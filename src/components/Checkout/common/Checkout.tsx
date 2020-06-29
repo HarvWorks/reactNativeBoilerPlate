@@ -1,9 +1,9 @@
-import React, { SFC } from "react";
+import React, { FunctionComponent } from "react";
 import { View, ScrollView } from "react-native";
 
 import styles from "./styles";
 
-const CheckoutComponent: SFC = props => {
+const CheckoutComponent: FunctionComponent = props => {
   const { children } = props;
   const { container, shadowContainer, spacers, scrollViewContainer } = styles;
   return (

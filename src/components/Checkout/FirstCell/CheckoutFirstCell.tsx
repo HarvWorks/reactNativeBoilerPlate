@@ -1,11 +1,11 @@
-import React, { SFC } from "react";
+import React, { FunctionComponent } from "react";
 
 import styles from "./styles";
 import i18n from "../../../../i18n";
 import CheckoutCells from "../common/CheckoutCells";
 import BoldText from "../../common/BoldText";
 
-const CheckoutFirstCell: SFC = () => {
+const CheckoutFirstCell: FunctionComponent = () => {
   const { checkoutTitle } = styles;
   return (
     <CheckoutCells>

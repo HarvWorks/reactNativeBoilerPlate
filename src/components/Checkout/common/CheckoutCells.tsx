@@ -1,4 +1,4 @@
-import React, { SFC } from "react";
+import React, { FunctionComponent } from "react";
 import { View } from "react-native";
 
 import styles from "./styles";
@@ -8,7 +8,7 @@ interface IProps {
   style?: object;
 }
 
-const CheckoutCells: SFC<IProps> = props => {
+const CheckoutCells: FunctionComponent<IProps> = props => {
   const { children, isBottom, style } = props;
   const { cells, cellsDivider } = styles;
   let cellStyles = [];

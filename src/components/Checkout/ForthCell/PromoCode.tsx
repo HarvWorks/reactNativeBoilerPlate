@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { View, TextInput } from "react-native";
 import { connect } from "react-redux";
 
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch: any) => ({
   applyCouponCode: (code: string) => applyCouponCode(code)(dispatch),
 });
 
-class PromoCode extends PureComponent<IProps, IState> {
+const PromoCode: FunctionComponent = (props) => {
   constructor(props: IProps) {
     super(props);
     this.state = {
