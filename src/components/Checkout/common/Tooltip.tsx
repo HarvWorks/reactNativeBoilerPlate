@@ -1,4 +1,5 @@
-import React, { createRef, PureComponent } from "react";
+/* eslint-disable react-native/no-inline-styles */
+import React, { createRef, FunctionComponent, useState } from "react";
 import { View, TouchableOpacity, Modal } from "react-native";
 
 import styles from "./styles";
@@ -7,91 +8,80 @@ import StylizedText from "../../common/StyledText";
 interface IProps {
   toolTipLink: any;
   toolTipText: String;
+  state?: IState;
 }
 
 interface IState {
   tooltipExtended: boolean;
-  x: number;
-  y: number;
+  yValue: number;
+  xValue: number;
 }
 
-class Tooltip extends PureComponent<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      tooltipExtended: false,
-      x: 0,
-      y: 0,
-    };
-  }
+const Tooltip: FunctionComponent<IProps> = ({
+  toolTipLink,
+  toolTipText,
+  state = {
+    tooltipExtended: false,
+    yValue: 0,
+    xValue: 0,
+  },
+}) => {
+  const { tooltipStyle, upTriangle, background } = styles;
+  const btnRef = createRef<TouchableOpacity>();
+  const [stateValue, setState] = useState(state);
+  const { tooltipExtended, yValue, xValue } = stateValue;
+  let toolTip = null;
 
-  private btnRef = createRef<TouchableOpacity>();
-
-  toggleTooltipHandler = () => {
-    const { tooltipExtended } = this.state;
-    if (!tooltipExtended && this.btnRef.current) {
-      this.btnRef.current.measureInWindow((x, y, containerWidth) => {
-        this.setState({
-          x: x + containerWidth / 2,
-          y: y,
+  const toggleTooltipHandler = () => {
+    if (!tooltipExtended && btnRef.current) {
+      btnRef.current.measureInWindow((x, y, containerWidth) => {
+        setState({
           tooltipExtended: !tooltipExtended,
+          xValue: x + containerWidth / 2,
+          yValue: y,
         });
       });
     } else {
-      this.setState({ tooltipExtended: !tooltipExtended });
+      setState({
+        ...stateValue,
+        tooltipExtended: !tooltipExtended,
+      });
     }
   };
 
-  getRenderTooltip = () => {
-    const { toolTipText } = this.props;
-    const { tooltipExtended, x, y } = this.state;
-    const { tooltipStyle, upTriangle, background } = styles;
-    let renderTooltip = null;
-
-    if (tooltipExtended) {
-      renderTooltip = (
-        <TouchableOpacity
-          onPress={this.toggleTooltipHandler}
-          style={background}>
-          <View
-            style={{
-              top: y + 5,
-              left: x - 200 / 2,
-              position: "absolute",
-              alignContent: "center",
-              alignItems: "center",
-            }}>
-            <View style={upTriangle} />
-            <View style={tooltipStyle}>
-              <StylizedText>{toolTipText}</StylizedText>
-            </View>
+  if (tooltipExtended) {
+    console.info("tooltip");
+    toolTip = (
+      <TouchableOpacity onPress={toggleTooltipHandler} style={background}>
+        <View
+          style={{
+            top: yValue + 20,
+            left: xValue - 200,
+            alignContent: "center",
+            alignItems: "center",
+          }}>
+          <View style={upTriangle} />
+          <View style={tooltipStyle}>
+            <StylizedText>{toolTipText}</StylizedText>
           </View>
-        </TouchableOpacity>
-      );
-    }
-    return renderTooltip;
-  };
-
-  render() {
-    const { toolTipLink } = this.props;
-    const { tooltipExtended } = this.state;
-
-    const tooltip = this.getRenderTooltip();
-
-    return (
-      <View>
-        <TouchableOpacity onPress={this.toggleTooltipHandler} ref={this.btnRef}>
-          {toolTipLink}
-        </TouchableOpacity>
-        <Modal
-          visible={tooltipExtended}
-          transparent={true}
-          onRequestClose={this.toggleTooltipHandler}>
-          {tooltip}
-        </Modal>
-      </View>
+        </View>
+      </TouchableOpacity>
     );
   }
-}
+
+  return (
+    <View>
+      <TouchableOpacity onPress={toggleTooltipHandler} ref={btnRef}>
+        {toolTipLink}
+      </TouchableOpacity>
+      <Modal
+        visible={tooltipExtended}
+        transparent={true}
+        onRequestClose={toggleTooltipHandler}>
+        {toolTip}
+      </Modal>
+    </View>
+  );
+};
 
 export default Tooltip;
