@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { View, TouchableOpacity } from "react-native";
 
 import styles from "./styles";
@@ -9,51 +9,33 @@ interface IProps {
   closeText: String;
 }
 
-interface IState {
-  expanded: Boolean;
-}
+const Expander: FunctionComponent<IProps> = props => {
+  const { openText, closeText } = props;
+  const { expanderStyles, underlined, expanderInnerContainer } = styles;
+  const [expandedValue, setExpanded] = useState(false);
+  const toggleExpanderHandler = () => setExpanded(!expandedValue);
+  let content = (
+    <TouchableOpacity onPress={toggleExpanderHandler}>
+      <StylizedText>
+        <StylizedText style={underlined}>{openText}</StylizedText> +
+      </StylizedText>
+    </TouchableOpacity>
+  );
 
-class Expander extends PureComponent<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      expanded: false,
-    };
-  }
-
-  toggleExpanderHandler = () => {
-    const { expanded } = this.state;
-    this.setState({ expanded: !expanded });
-  };
-
-  render() {
-    const { children, openText, closeText } = this.props;
-    const { expanded } = this.state;
-    const { expanderStyles, underlined, expanderInnerContainer } = styles;
-
-    let content = (
-      <TouchableOpacity onPress={this.toggleExpanderHandler}>
-        <StylizedText>
-          <StylizedText style={underlined}>{openText}</StylizedText> +
-        </StylizedText>
-      </TouchableOpacity>
+  if (expandedValue) {
+    content = (
+      <>
+        <TouchableOpacity onPress={toggleExpanderHandler}>
+          <StylizedText>
+            <StylizedText style={underlined}>{closeText}</StylizedText> -
+          </StylizedText>
+        </TouchableOpacity>
+        <View style={expanderInnerContainer}>{props.children}</View>
+      </>
     );
-
-    if (expanded) {
-      content = (
-        <>
-          <TouchableOpacity onPress={this.toggleExpanderHandler}>
-            <StylizedText>
-              <StylizedText style={underlined}>{closeText}</StylizedText> -
-            </StylizedText>
-          </TouchableOpacity>
-          <View style={expanderInnerContainer}>{children}</View>
-        </>
-      );
-    }
-
-    return <View style={expanderStyles}>{content}</View>;
   }
-}
+
+  return <View style={expanderStyles}>{content}</View>;
+};
 
 export default Expander;
